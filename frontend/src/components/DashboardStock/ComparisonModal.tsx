@@ -1,5 +1,4 @@
-import { Button, Icon, Input, InputGroup, InputLeftElement, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Table, TableContainer, Tbody, Th, Thead, Tr, useDisclosure } from "@chakra-ui/react"
-import { RiAddFill } from "react-icons/ri";
+import { Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Table, TableContainer, Tbody, Th, Thead, Tr, useDisclosure } from "@chakra-ui/react"
 import { StockInput } from "../StockInput";
 import { CompareStockLine } from "./CompareStockLine";
 
@@ -38,7 +37,7 @@ export function ComparisonModal({ title }: ComparisonModalProps) {
                     </ModalBody>
 
                     <ModalFooter>
-                        <StockInput onSubmit={() => alert("enviado!")} w="100%"/>
+                        <StockInput handleSubmit={() => alert('enviado')} w="100%"/>
                     </ModalFooter>
                 </ModalContent>
             </Modal>
