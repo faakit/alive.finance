@@ -4,7 +4,7 @@ import { MdKeyboardArrowUp, MdKeyboardArrowDown } from 'react-icons/md'
 interface CompareStockLineProps {
     baseStockPrice: number;
     comparedStock: {
-        title: string;
+        name: string;
         price: number;
     }
 }
@@ -15,7 +15,7 @@ export function CompareStockLine({ baseStockPrice, comparedStock }: CompareStock
     if (priceDifference < 0) {
         return (
             <Tr bg="red.300">
-                <Td>{comparedStock.title}</Td>
+                <Td>{comparedStock.name}</Td>
                 <Td>$ {comparedStock.price}</Td>
                 <Td isNumeric><Icon as={MdKeyboardArrowDown} />$ {-priceDifference}</Td>
             </Tr>
@@ -24,7 +24,7 @@ export function CompareStockLine({ baseStockPrice, comparedStock }: CompareStock
 
     return (
         <Tr bg="green.300">
-            <Td>{comparedStock.title}</Td>
+            <Td>{comparedStock.name}</Td>
             <Td>$ {comparedStock.price}</Td>
             <Td isNumeric><Icon as={MdKeyboardArrowUp} />$ {priceDifference}</Td>
         </Tr>

@@ -17,6 +17,7 @@ export function StockInput({ handleSubmit, ...rest }: StockInputProps) {
         await handleSubmit(stock);
 
         setIsSubmiting(false);
+        setStock('');
     }
 
     return (
@@ -42,6 +43,7 @@ export function StockInput({ handleSubmit, ...rest }: StockInputProps) {
                     placeholder='Adicionar ação' 
                     h="3rem" 
                     fontSize="1.5rem" 
+                    value={stock}
                     onChange={(ev) => setStock(ev.target.value)}
                     isDisabled={isSubmiting}
                     />
