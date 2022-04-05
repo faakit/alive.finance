@@ -45,7 +45,7 @@ export function DashboardStock({ name, lastPrice, pricedAt, deleteStock }: Dashb
 
             <Flex justifyContent="space-between" mt="2">
                 <ComparisonModal name={name} price={lastPrice} />
-                <HistoricModal title={name} />
+                <HistoricModal name={name} />
             </Flex>
         </Box>
     )
