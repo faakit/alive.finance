@@ -1,25 +1,30 @@
-import { Flex } from "@chakra-ui/react"
-import { NextPage } from "next"
 import React from "react"
+import { NextPage } from "next"
+
+import { Flex } from "@chakra-ui/react"
+
 import { DashboardStock } from "../components/DashboardStock"
 import { Header } from "../components/Header"
 import { StockInput } from "../components/StockInput"
+import { useDashboardStocks } from "../services/hooks/useDashboardStocks"
 
 const Dashboard: NextPage = () => {
-    function handleSubmit(stock: string) {
-        console.log(stock);
+    const { getStock, stocks } = useDashboardStocks();
+
+    async function handleSubmit(stock: string) {
+        await getStock(stock);
     }
 
     return (
         <Flex w={"80%"} margin="0 auto" direction="column">
             <Header />
 
-            <StockInput mt='2rem' handleSubmit={(stock) => handleSubmit(stock)}/>
+            <StockInput mt='2rem' handleSubmit={(stock) => handleSubmit(stock)} />
 
             <Flex wrap="wrap" gap={6} mt="2rem" justifyContent="start">
-                <DashboardStock title={"GOOGL"}/>
-                <DashboardStock title={"GOOGL"}/>
-                <DashboardStock title={"GOOGL"}/>
+                {stocks.map((stock) => (
+                    <DashboardStock key={stock.name} name={stock.name} lastPrice={stock.lastPrice} pricedAt={stock.pricedAt} />
+                ))}
             </Flex>
         </Flex>
     )

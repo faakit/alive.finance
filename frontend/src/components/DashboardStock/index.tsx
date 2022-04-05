@@ -3,10 +3,12 @@ import { ComparisonModal } from "./ComparisonModal";
 import { HistoricModal } from "./HistoricModal";
 
 interface DashboardStockProps {
-    title: string;
+    name: string;
+    lastPrice: number;
+    pricedAt: string;
 }
 
-export function DashboardStock({ title }: DashboardStockProps) {
+export function DashboardStock({ name, lastPrice, pricedAt }: DashboardStockProps) {
     return (
         <Box 
         minW="250px" 
@@ -25,16 +27,20 @@ export function DashboardStock({ title }: DashboardStockProps) {
                 fontSize="xl"
                 fontWeight="bold"
             >
-                {title}
+                {name}
             </Text>
 
             <Text color="white" fontSize="md">
-                Ultimo preço: $2700.00
+                Ultimo preço: $ {lastPrice}
+            </Text>
+
+            <Text color="white" fontSize="md">
+                Precificação do dia: {pricedAt}
             </Text>
 
             <Flex justifyContent="space-between" mt="2">
-                <ComparisonModal title={title} />
-                <HistoricModal title={title} />
+                <ComparisonModal title={name} />
+                <HistoricModal title={name} />
             </Flex>
         </Box>
     )
