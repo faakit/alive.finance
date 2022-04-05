@@ -8,7 +8,18 @@ interface DashboardStockProps {
 
 export function DashboardStock({ title }: DashboardStockProps) {
     return (
-        <Box minW="200px" maxW="250px" bg="blue.400" p="4" borderRadius="xl" flex="1">
+        <Box 
+        minW="250px" 
+        maxW="400px" 
+        bg="blue.400" 
+        p="4" 
+        borderRadius="xl" 
+        flex="1"
+        transition="all 0.2s"
+        _hover={{
+            transform: 'scale(1.05)'
+        }}
+        >
             <Text
                 color="white"
                 fontSize="xl"
