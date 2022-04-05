@@ -9,10 +9,14 @@ import { StockInput } from "../components/StockInput"
 import { useDashboardStocks } from "../services/hooks/useDashboardStocks"
 
 const Dashboard: NextPage = () => {
-    const { getStock, stocks } = useDashboardStocks();
+    const { getStock, stocks, deleteStock } = useDashboardStocks();
 
     async function handleSubmit(stock: string) {
         await getStock(stock);
+    }
+
+    function handleDeleteStock(stock: string){
+        deleteStock(stock);
     }
 
     return (
@@ -23,7 +27,13 @@ const Dashboard: NextPage = () => {
 
             <Flex wrap="wrap" gap={6} mt="2rem" justifyContent="start">
                 {stocks.map((stock) => (
-                    <DashboardStock key={stock.name} name={stock.name} lastPrice={stock.lastPrice} pricedAt={stock.pricedAt} />
+                    <DashboardStock 
+                    key={stock.name} 
+                    name={stock.name} 
+                    lastPrice={stock.lastPrice} 
+                    pricedAt={stock.pricedAt} 
+                    deleteStock={(name) => handleDeleteStock(name)}
+                    />
                 ))}
             </Flex>
         </Flex>

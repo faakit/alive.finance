@@ -1,18 +1,22 @@
-import { Flex, FormControl, Icon, Input, InputGroup, InputGroupProps, InputLeftElement } from "@chakra-ui/react";
+import { Flex, FormControl, Icon, Input, InputGroup, InputGroupProps, InputLeftElement, Spinner } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { RiAddFill } from "react-icons/ri";
 
 interface StockInputProps extends InputGroupProps { 
-    handleSubmit: (stock: string) => void;
+    handleSubmit: (stock: string) => Promise<void>;
 }
 
 export function StockInput({ handleSubmit, ...rest }: StockInputProps) {
     const [stock, setStock] = useState('');
+    const [isSubmiting, setIsSubmiting] = useState(false);
 
-    function submitHandler(ev: React.FormEvent){
+    async function submitHandler(ev: React.FormEvent){
         ev.preventDefault();
+        setIsSubmiting(true);
 
-        handleSubmit(stock);
+        await handleSubmit(stock);
+
+        setIsSubmiting(false);
     }
 
     return (
@@ -31,7 +35,7 @@ export function StockInput({ handleSubmit, ...rest }: StockInputProps) {
                         pointerEvents='none'
                         h="3rem"
                     >
-                        <Icon as={RiAddFill} fontSize="1.5rem" />
+                        {isSubmiting ? <Spinner /> : <Icon as={RiAddFill} fontSize="1.5rem" />}
                     </InputLeftElement>
                     <Input 
                     id="stock" 
@@ -39,6 +43,7 @@ export function StockInput({ handleSubmit, ...rest }: StockInputProps) {
                     h="3rem" 
                     fontSize="1.5rem" 
                     onChange={(ev) => setStock(ev.target.value)}
+                    isDisabled={isSubmiting}
                     />
                 </InputGroup>
             </FormControl>

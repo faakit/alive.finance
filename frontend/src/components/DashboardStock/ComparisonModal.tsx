@@ -37,7 +37,7 @@ export function ComparisonModal({ title }: ComparisonModalProps) {
                     </ModalBody>
 
                     <ModalFooter>
-                        <StockInput handleSubmit={() => alert('enviado')} w="100%"/>
+                        <StockInput handleSubmit={async () => alert('enviado')} w="100%"/>
                     </ModalFooter>
                 </ModalContent>
             </Modal>

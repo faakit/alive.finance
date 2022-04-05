@@ -75,13 +75,9 @@ export function DashboardStocksProvider({ children }: DashboardStocksProviderPro
     }
 
     function deleteStock(stock: string) {
-        const alreadyExists = stocks.findIndex((x) =>
-                x.name.toLowerCase() === stock.toLowerCase()
-        );
-
-        const splicedArray = stocks.splice(alreadyExists);
-
-        setStocks(splicedArray);
+        const newStocks = stocks.filter(item => item.name !== stock);
+        setStocks(newStocks);
+        localStorage.setItem("@alive.finances", JSON.stringify(newStocks));
     }
 
     return (
