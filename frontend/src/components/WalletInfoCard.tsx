@@ -23,15 +23,15 @@ export function WalletInfoCard({
         <Box bg={colors[color]} borderRadius="md" flex={1}>
             <Text
                 fontSize="3xl"
-                fontWeight="thin"
+                fontWeight={fontWeight}
                 pl='8'
                 pt='4'
             >
-                Aporte
+                {title}
             </Text>
             <Divider color="white" />
             <Text fontSize="xl" pl='8' py='4'>
-                $ 5000,00
+                $ {value}
             </Text>
         </Box>
     )
