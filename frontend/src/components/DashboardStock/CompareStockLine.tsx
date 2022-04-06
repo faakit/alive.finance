@@ -10,14 +10,17 @@ interface CompareStockLineProps {
 }
 
 export function CompareStockLine({ baseStockPrice, comparedStock }: CompareStockLineProps) {
-    const priceDifference: number = baseStockPrice - comparedStock.price;
+    const priceDifference: number = Math.round(
+        (baseStockPrice - comparedStock.price + Number.EPSILON) * 100) / 100;
 
     if (priceDifference < 0) {
         return (
             <Tr bg="red.300">
                 <Td>{comparedStock.name}</Td>
                 <Td>$ {comparedStock.price}</Td>
-                <Td isNumeric><Icon as={MdKeyboardArrowDown} />$ {-priceDifference}</Td>
+                <Td isNumeric><Icon as={MdKeyboardArrowDown} />
+                $ {-priceDifference}
+                </Td>
             </Tr>
         )
     }
