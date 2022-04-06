@@ -50,7 +50,7 @@ export function Header() {
                                     />
                                     <MenuItemLink
                                         icon={FaWallet}
-                                        href='/simulator'
+                                        href='/simulation'
                                         title="Simulador"
                                     />
                                 </MenuList>

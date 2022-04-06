@@ -22,13 +22,6 @@ interface ResponseProps {
   }[]
 }
 
-interface SeriesProps {
-  data: [
-    x: string,
-    y: [string, string, string, string]
-  ]
-}
-
 const options: ApexOptions = {
   chart: {
     type: 'candlestick',
@@ -44,7 +37,7 @@ const options: ApexOptions = {
   yaxis: {
     tooltip: {
       enabled: true
-    }
+    },
   }
 }
 
