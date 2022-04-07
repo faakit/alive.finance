@@ -1,22 +1,13 @@
 import { Box, Flex } from '@chakra-ui/react';
 import { ApexOptions } from 'apexcharts';
 import dynamic from 'next/dynamic';
+import { useSimulation } from '../../services/hooks/useSimulation';
 
 const Chart = dynamic(() => import('react-apexcharts'), {
     ssr: false,
 });
 
 const options: ApexOptions = {
-    series: [{
-        name: 'Aporte',
-        data: [44, 55, 41, 67, 22],
-    }, {
-        name: 'Perda',
-        data: [13, 23, 20, 8, 13]
-    }, {
-        name: 'Ganho',
-        data: [11, 17, 15, 15, 21]
-    }],
     responsive: [{
         breakpoint: 480,
         options: {
@@ -45,10 +36,6 @@ const options: ApexOptions = {
             borderRadius: 10
         },
     },
-    xaxis: {
-        type: 'category',
-        categories: ['AAPL', 'GOOGL', 'AA', 'AE', 'WW'],
-    },
     legend: {
         show: false
     },
@@ -63,9 +50,49 @@ interface ColumnChartProps {
 }
 
 export function ColumnChart() {
+    const { stocks } = useSimulation();
+
+    const xaxis: ApexXAxis = {
+        type: 'category',
+        categories: []
+    }
+    
+    const series: ApexAxisChartSeries = [
+        {
+            name: 'Aporte',
+            data: [],
+        }, {
+            name: 'Perda',
+            data: []
+        }, {
+            name: 'Ganho',
+            data: []
+        }];
+
+    stocks.map((stock) => {
+        const paid = Number((Number(stock.priceAtDate) * Number(stock.purchasedAmount)).toFixed(2));
+        const returned = Number(stock.capitalGains.toFixed(2));
+        series[0].data.push(paid as any);
+        if (returned > 0) {
+            series[2].data.push(returned as any);
+            series[1].data.push(0 as any);
+        } else {
+            series[2].data.push(0 as any);
+            series[1].data.push(returned as any);
+        }
+        xaxis.categories.push(stock.name);
+    })
+
+    const chartOptions: ApexOptions = {
+        ...options,
+        xaxis,
+        series
+    }
+
+
     return (
         <Flex bg='gray.300' borderRadius='4' justifyContent="center">
-            <Chart options={options} series={options.series} xaxis={options.xaxis} type='bar' width={400}/>
+            <Chart options={chartOptions} series={series} xaxis={xaxis} type='bar' width={400} />
         </Flex>
     )
 }

@@ -26,7 +26,7 @@ export function DashboardStocksProvider({ children }: DashboardStocksProviderPro
     const toast = useToast();
 
     useEffect(() => {
-        const localData = localStorage.getItem('@alive.finances');
+        const localData = localStorage.getItem('@alive.finances:dashboard');
         if (!!localData) {
             setStocks(JSON.parse(localData));
         }
@@ -62,7 +62,7 @@ export function DashboardStocksProvider({ children }: DashboardStocksProviderPro
             }
 
             setStocks([...stocks, parsedData]);
-            localStorage.setItem("@alive.finances", JSON.stringify([...stocks, parsedData]));
+            localStorage.setItem("@alive.finances:dashboard", JSON.stringify([...stocks, parsedData]));
         } catch (error: AxiosError | any) {
             toast({
                 title: 'Ocorreu um erro.',
@@ -77,7 +77,7 @@ export function DashboardStocksProvider({ children }: DashboardStocksProviderPro
     function deleteStock(stock: string) {
         const newStocks = stocks.filter(item => item.name !== stock);
         setStocks(newStocks);
-        localStorage.setItem("@alive.finances", JSON.stringify(newStocks));
+        localStorage.setItem("@alive.finances:dashboard", JSON.stringify(newStocks));
     }
 
     return (

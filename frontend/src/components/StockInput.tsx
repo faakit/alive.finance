@@ -50,6 +50,5 @@ export function StockInput({ handleSubmit, ...rest }: StockInputProps) {
                 </InputGroup>
             </FormControl>
         </Flex>
-
     )
 }
