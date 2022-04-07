@@ -15,6 +15,7 @@ const Home: NextPage = () => {
     <Flex w={"80%"} margin="0 auto" direction="column">
       <Header />
 
+
       <Flex
         justifyContent="space-between"
         gap={["6", "8", "16"]}
@@ -34,15 +35,18 @@ const Home: NextPage = () => {
         />
       </Flex>
 
-      <Flex
-        mt='8'
-        justifyContent="center"
-        gap="4"
-        direction={['column', 'column', 'row']}
-      >
-        <ColumnChart />
-        <PieChart />
-      </Flex>
+     {generalData.investment > 0 && <>
+        <Flex
+          mt='8'
+          justifyContent="center"
+          gap="4"
+          direction={['column', 'column', 'row']}
+        >
+          <ColumnChart />
+          <PieChart />
+        </Flex>
+      </>}
+
 
       <SimulationTable />
     </Flex>
