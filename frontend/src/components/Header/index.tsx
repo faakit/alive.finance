@@ -1,6 +1,6 @@
 import { Logo } from "../Logo";
 
-import { Collapse, Flex, Icon, IconButton, Menu, MenuButton, MenuItem, MenuList, Text } from "@chakra-ui/react";
+import { Collapse, Flex, Icon, IconButton, Menu, MenuButton, MenuItem, MenuList, Text, useBreakpointValue } from "@chakra-ui/react";
 
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { AiOutlineStock, AiOutlineClose } from 'react-icons/ai'
@@ -8,6 +8,11 @@ import { FaWallet } from 'react-icons/fa'
 import { MenuItemLink } from "./MenuItemLink";
 
 export function Header() {
+    const isWide = useBreakpointValue({
+        base: false,
+        md: true
+    });
+
     return (
         <Flex
             justifyContent="space-between"
@@ -18,9 +23,10 @@ export function Header() {
             <Logo />
 
             <Flex alignItems="center">
-                <Text fontSize="xl" color="gray.300">
-                    Bem vindo, André.
-                </Text>
+                {isWide &&
+                    <Text fontSize="xl" color="gray.300">
+                        Bem vindo, Usuário.
+                    </Text>}
                 <Menu autoSelect={false}>
                     {({ isOpen }) => (
                         <>
@@ -28,7 +34,7 @@ export function Header() {
                                 as={IconButton}
                                 aria-label='Opções'
                                 icon={isOpen ? <Icon as={AiOutlineClose} color="white" />
-                                             : <Icon as={GiHamburgerMenu} color="white" />}
+                                    : <Icon as={GiHamburgerMenu} color="white" />}
                                 variant="ghost"
                                 _hover={{
                                     background: 'transparent'
