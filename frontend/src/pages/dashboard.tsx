@@ -8,7 +8,7 @@ import { Header } from "../components/Header"
 import { StockInput } from "../components/StockInput"
 import { useDashboardStocks } from "../services/hooks/useDashboardStocks"
 
-const Dashboard: NextPage = () => {
+export default function Dashboard() {
     const { getStock, stocks, deleteStock } = useDashboardStocks();
 
     async function handleSubmit(stock: string) {
@@ -39,5 +39,3 @@ const Dashboard: NextPage = () => {
         </Flex>
     )
 }
-
-export default Dashboard
