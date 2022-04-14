@@ -7,6 +7,6 @@ import app from './main/app';
 
 assert.equal(process.env.TZ, 'utc');
 
-app.listen(3001, () => {
+app.listen(process.env.PORT || 3001, () => {
   console.log('Server Running...');
 });
