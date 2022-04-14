@@ -44,7 +44,7 @@ Desafio onde deveria ser implementado um front-end que pudesse lidar com as segu
 - A simulação possui um painel com gráficos que mostram aportes, perdas e ganhos
 - A simulação também fica salva no navegador e estará disponível no retorno do usuário
 
-Tudo com um design agradável e responsivo!
+Tudo com um design agradável e responsivo! 
 </p>
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
